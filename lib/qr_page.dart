@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:picknpass/cart.dart';
 
 class QRPage extends StatelessWidget {
   const QRPage({super.key});
@@ -49,7 +50,7 @@ class QRPage extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => QRPage()));
+                                  builder: (context) => Cart()));
                         },
                         child: Text(
                           'Start Shopping',
