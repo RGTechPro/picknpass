@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:picknpass/home_page.dart';
 
+import 'locator.dart';
+
 void main() {
+    setupServices();
+
   runApp(const MyApp());
 }
 
@@ -17,7 +21,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home:  HomePage(),
+      home:  HomePage (),
     );
   }
 }
