@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:camera/camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:image/image.dart' as imglib;
@@ -24,22 +25,24 @@ class MLService {
         delegate = GpuDelegateV2(
           options: GpuDelegateOptionsV2(
             isPrecisionLossAllowed: false,
-            inferencePreference: TfLiteGpuInferenceUsage.fastSingleAnswer,
-            inferencePriority1: TfLiteGpuInferencePriority.minLatency,
-            inferencePriority2: TfLiteGpuInferencePriority.auto,
-            inferencePriority3: TfLiteGpuInferencePriority.auto,
+            // inferencePreference: TfLiteGpuInferenceUsage.fastSingleAnswer,
+            // inferencePriority1: TfLiteGpuInferencePriority.minLatency,
+            // inferencePriority2: TfLiteGpuInferencePriority.auto,
+            // inferencePriority3: TfLiteGpuInferencePriority.auto,
           ),
         );
       } else if (Platform.isIOS) {
         delegate = GpuDelegate(
           options: GpuDelegateOptions(
-              allowPrecisionLoss: true,
-              waitType: TFLGpuDelegateWaitType.active),
+            allowPrecisionLoss: true,
+
+            // waitType: TFLGpuDelegateWaitType.active
+          ),
         );
       }
       var interpreterOptions = InterpreterOptions()..addDelegate(delegate);
 
-      this._interpreter = await Interpreter.fromAsset('mobilefacenet.tflite',
+      _interpreter = await Interpreter.fromAsset('assets/mobilefacenet.tflite',
           options: interpreterOptions);
     } catch (e) {
       print('Failed to load model.');
@@ -55,14 +58,14 @@ class MLService {
     input = input.reshape([1, 112, 112, 3]);
     List output = List.generate(1, (index) => List.filled(192, 0));
 
-    this._interpreter?.run(input, output);
+    _interpreter?.run(input, output);
     output = output.reshape([192]);
 
-    this._predictedData = List.from(output);
+    _predictedData = List.from(output);
   }
 
   Future<User?> predict() async {
-    return _searchResult(this._predictedData);
+    return _searchResult(_predictedData);
   }
 
   List _preProcess(CameraImage image, Face faceDetected) {
@@ -108,7 +111,8 @@ class MLService {
   Future<User?> _searchResult(List predictedData) async {
     DatabaseHelper _dbHelper = DatabaseHelper.instance;
 
-    List<User> users = await _dbHelper.queryAllUsers();
+   // List<User> users = await _dbHelper.queryAllUsers();
+   List <User> users = await queryAllUsersFromFirestore();
     double minDist = 999;
     double currDist = 0.0;
     User? predictedResult;
@@ -116,6 +120,7 @@ class MLService {
     print('users.length=> ${users.length}');
 
     for (User u in users) {
+      print(u.modelData);
       currDist = _euclideanDistance(u.modelData, predictedData);
       if (currDist <= threshold && currDist < minDist) {
         minDist = currDist;
@@ -136,7 +141,19 @@ class MLService {
   }
 
   void setPredictedData(value) {
-    this._predictedData = value;
+    _predictedData = value;
+  }
+
+
+Future<List<User>> queryAllUsersFromFirestore() async {
+    final db = FirebaseFirestore.instance;
+    List<User> users = [];
+    await db.collection('users').get().then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        users.add(User.fromMap(doc.data() as Map<String, dynamic>));
+      });
+    });
+    return users;
   }
 
   dispose() {}

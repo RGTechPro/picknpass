@@ -46,7 +46,7 @@ class SignInSheet extends StatelessWidget {
         children: [
           Container(
             child: Text(
-              'Welcome back, ' + user.user + '.',
+              'Welcome back, ' + user.name + '.',
               style: TextStyle(fontSize: 20),
             ),
           ),

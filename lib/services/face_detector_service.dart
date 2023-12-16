@@ -128,17 +128,17 @@ class FaceDetectorService {
   //   //     },
   //   //   ).toList(),
   //   // );
-  //
+  
   //   final WriteBuffer allBytes = WriteBuffer();
   //   for (Plane plane in image.planes) {
   //     allBytes.putUint8List(plane.bytes);
   //   }
   //   final bytes = allBytes.done().buffer.asUint8List();
-  //
+  
   //   final Size imageSize = Size(image.width.toDouble(), image.height.toDouble());
-  //
+  
   //   InputImageRotation imageRotation = _cameraService.cameraRotation ?? InputImageRotation.rotation0deg;
-  //
+  
   //   final inputImageData = InputImageData(
   //     size: imageSize,
   //     imageRotation: imageRotation,
@@ -153,12 +153,12 @@ class FaceDetectorService {
   //       },
   //     ).toList(),
   //   );
-  //
+  
   //   InputImage _firebaseVisionImage = InputImage.fromBytes(
   //     bytes: bytes,
   //     inputImageData: inputImageData,
   //   );
-  //
+  
   //   _faces = await _faceDetector.processImage(_firebaseVisionImage);
   // }
 

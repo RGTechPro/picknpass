@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:picknpass/home_page.dart';
+import 'package:picknpass/pages/home.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'locator.dart';
 
-void main() {
-    setupServices();
-
+void main() async{
+   setupServices();
+   WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
@@ -21,7 +27,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home:  HomePage (),
+      home:  MyHomePage (),
     );
   }
 }

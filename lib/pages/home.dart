@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:picknpass/pages/sign-in.dart';
 import 'package:picknpass/pages/sign-up.dart';
@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _initializeServices();
   }
 
-  _initializeServices() async {
+  _initializeServices() async { 
     setState(() => loading = true);
     await _cameraService.initialize();
     await _mlService.initialize();
@@ -84,29 +84,29 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Image(image: AssetImage('assets/logo.png')),
+                      SvgPicture.asset(
+                        'assets/logo.svg',
+                        color: Colors.blue,
+                        height: 100,
+                      ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: Column(
                           children: [
-                            Text(
-                              "FACE RECOGNITION AUTHENTICATION",
-                              style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                            ),
                             SizedBox(
                               height: 20,
                             ),
                             Text(
-                              "Demo application that uses Flutter and tensorflow to implement authentication with facial recognition",
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
+                              "Sign-up and login using your face",
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.blue),
                               textAlign: TextAlign.center,
                             ),
                           ],
                         ),
+                      ),
+                      SizedBox(
+                        height: 150,
                       ),
                       Column(
                         children: [
@@ -198,42 +198,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             width: MediaQuery.of(context).size.width * 0.8,
                             child: Divider(
                               thickness: 2,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: _launchURL,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.black,
-                                boxShadow: <BoxShadow>[
-                                  BoxShadow(
-                                    color: Colors.blue.withOpacity(0.1),
-                                    blurRadius: 1,
-                                    offset: Offset(0, 2),
-                                  ),
-                                ],
-                              ),
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 14, horizontal: 16),
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'CONTRIBUTE',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  FaIcon(
-                                    FontAwesomeIcons.github,
-                                    color: Colors.white,
-                                  )
-                                ],
-                              ),
                             ),
                           ),
                         ],

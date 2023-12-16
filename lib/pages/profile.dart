@@ -1,8 +1,8 @@
 import 'dart:io';
 
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:picknpass/home_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../widgets/app_button.dart';
 import 'home.dart';
@@ -65,7 +65,7 @@ class Profile extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      '''If you think this project seems interesting and you want to contribute or need some help implementing it, dont hesitate and lets get in touch!''',
+                      '''You are successfully logged in as a verified customer of PickNPass. To continue to our shop, press continue!''',
                       style: TextStyle(fontSize: 16),
                       textAlign: TextAlign.left,
                     ),
@@ -73,7 +73,12 @@ class Profile extends StatelessWidget {
                       height: 30,
                     ),
                     InkWell(
-                      onTap: _launchURL,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -94,16 +99,12 @@ class Profile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'CONTRIBUTE',
+                              'CONTINUE',
                               style: TextStyle(color: Colors.white),
                             ),
                             SizedBox(
                               width: 10,
                             ),
-                            FaIcon(
-                              FontAwesomeIcons.github,
-                              color: Colors.white,
-                            )
                           ],
                         ),
                       ),

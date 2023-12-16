@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1097340043",
+    "firebase_url": "https://picknpass-11cc5-default-rtdb.firebaseio.com",
+    "project_id": "picknpass-11cc5",
+    "storage_bucket": "picknpass-11cc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097340043:android:0646abd4cb472f63f8308e",
+        "android_client_info": {
+          "package_name": "com.example.picknpass"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF2Sibbr_ZWLsgzeduugepJ64eYfZz0Io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

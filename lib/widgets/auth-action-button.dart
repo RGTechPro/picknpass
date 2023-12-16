@@ -1,4 +1,4 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart';
 import '../locator.dart';
@@ -36,16 +36,29 @@ class _AuthActionButtonState extends State<AuthActionButton> {
   User? predictedUser;
 
   Future _signUp(context) async {
-    DatabaseHelper _databaseHelper = DatabaseHelper.instance;
+  //  DatabaseHelper _databaseHelper = DatabaseHelper.instance;
     List predictedData = _mlService.predictedData;
-    String user = _userTextEditingController.text;
+    String name = _userTextEditingController.text;
     String password = _passwordTextEditingController.text;
-    User userToSave = User(
-      user: user,
-      password: password,
-      modelData: predictedData,
-    );
-    await _databaseHelper.insert(userToSave);
+
+    // User userToSave = User(
+    //   name: name,
+    //   password: password,
+    //   modelData: predictedData,
+
+    // );
+
+  
+    final db = FirebaseFirestore.instance;
+    final  ref = db.collection('users').doc();
+await  ref.set({
+      'name': name,
+      'password': password,
+      'modelData': predictedData,
+      'userId': ref.id,
+    });
+
+   // await _databaseHelper.insert(userToSave);
     this._mlService.setPredictedData([]);
     Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
@@ -58,7 +71,7 @@ class _AuthActionButtonState extends State<AuthActionButton> {
           context,
           MaterialPageRoute(
               builder: (BuildContext context) => Profile(
-                    this.predictedUser!.user,
+                    this.predictedUser!.name,
                     imagePath: _cameraService.imagePath!,
                   )));
     } else {
@@ -145,7 +158,7 @@ class _AuthActionButtonState extends State<AuthActionButton> {
           widget.isLogin && predictedUser != null
               ? Container(
                   child: Text(
-                    'Welcome back, ' + predictedUser!.user + '.',
+                    'Welcome back, ' + predictedUser!.name + '.',
                     style: TextStyle(fontSize: 20),
                   ),
                 )
