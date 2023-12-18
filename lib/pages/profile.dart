@@ -19,50 +19,48 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-
-
+  String currentLocation = 'Fetching location...';
   @override
   void initState() {
     super.initState();
     fetchLocation();
-  }   String currentLocation = 'Fetching location...';
-   final List<Store> stores = [
+  }
+
+  final List<Store> stores = [
     Store(name: 'Thapar Patiala Store', latitude: 30.3564, longitude: 76.3647),
     Store(name: 'Chandigarh Store', latitude: 30.7333, longitude: 76.7794),
     Store(name: 'Delhi Store', latitude: 28.7041, longitude: 77.1025),
   ];
 
-double calculateDistance(double startLatitude, double startLongitude,
-    double endLatitude, double endLongitude) {
-  const double p = 0.017453292519943295; // Math.PI / 180
-  final double a = 0.5 -
-      cos((endLatitude - startLatitude) * p) / 2 +
-      cos(startLatitude * p) *
-          cos(endLatitude * p) *
-          (1 - cos((endLongitude - startLongitude) * p)) /
-          2;
-  return 12742 * asin(sqrt(a)); // 2 * R; R = 6371 km
-}
-
-Store findNearestStore(Position currentPosition, List<Store> stores) {
-  double minDistance = double.infinity;
-  Store nearestStore = stores[0];
-
-  for (var store in stores) {
-    double distance = calculateDistance(
-        currentPosition.latitude,
-        currentPosition.longitude,
-        store.latitude,
-        store.longitude);
-
-    if (distance < minDistance) {
-      minDistance = distance;
-      nearestStore = store;
-    }
+  double calculateDistance(double startLatitude, double startLongitude,
+      double endLatitude, double endLongitude) {
+    const double p = 0.017453292519943295; // Math.PI / 180
+    final double a = 0.5 -
+        cos((endLatitude - startLatitude) * p) / 2 +
+        cos(startLatitude * p) *
+            cos(endLatitude * p) *
+            (1 - cos((endLongitude - startLongitude) * p)) /
+            2;
+    return 12742 * asin(sqrt(a)); // 2 * R; R = 6371 km
   }
 
-  return nearestStore;
-}
+  Store findNearestStore(Position currentPosition, List<Store> stores) {
+    double minDistance = double.infinity;
+    Store nearestStore = stores[0];
+
+    for (var store in stores) {
+      double distance = calculateDistance(currentPosition.latitude,
+          currentPosition.longitude, store.latitude, store.longitude);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        nearestStore = store;
+      }
+    }
+
+    return nearestStore;
+  }
+
   Future<void> fetchLocation() async {
     try {
       bool serviceEnabled;
@@ -88,12 +86,14 @@ Store findNearestStore(Position currentPosition, List<Store> stores) {
           desiredAccuracy: LocationAccuracy.high);
       // You can replace this with your preferred method to get the city name from the coordinates.
       String cityName = findNearestStore(position, stores).name;
+      print(cityName);
       setState(() {
         currentLocation = cityName;
       });
     } catch (e) {
       setState(() {
         currentLocation = 'Error fetching location';
+        print(e.toString());
       });
     }
   }
@@ -134,24 +134,17 @@ Store findNearestStore(Position currentPosition, List<Store> stores) {
                   ),
                 ],
               ),
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.location_on,
-                        size: 50.0, color: Colors.blue), // Location icon
-                    SizedBox(height: 16.0),
-                    Text(
-                      'Your current store location is:',
-                      style: TextStyle(fontSize: 18.0),
-                    ),
-                    Text(
-                      currentLocation,
-                      style: TextStyle(
-                          fontSize: 24.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+              Icon(Icons.location_on,
+                  size: 50.0, color: Colors.blue), // Location icon
+              SizedBox(height: 16.0),
+              Text(
+                'Your current store location is:',
+                style: TextStyle(fontSize: 18.0),
+              ),
+              Text(
+                currentLocation,
+                style: TextStyle(
+                    fontSize: 24.0, fontWeight: FontWeight.bold),
               ),
               Container(
                 margin: const EdgeInsets.all(20),
