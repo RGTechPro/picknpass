@@ -41,3 +41,77 @@ class ShoppingCart {
     return items.map((item) => item.toMap()).toList();
   }
 }
+
+
+
+class MyOrder {
+  List<CartItem> items;
+  double payableAmount;
+  MyTransaction paymentInfo;
+
+  MyOrder({
+    required this.items,
+    required this.payableAmount,
+    required this.paymentInfo,
+  });
+
+  // Factory method to create an Order instance from a Map
+  factory MyOrder.fromMap(Map<String, dynamic> map) {
+    return MyOrder(
+      items: List<CartItem>.from(map['items'].map((item) => CartItem.fromMap(item))),
+      payableAmount: map['payableAmount'] ?? 0.0,
+      paymentInfo: MyTransaction.fromMap(map['paymentInfo']),
+    );
+  }
+
+  // Method to convert Order instance to a Map
+  Map<String, dynamic> toMap() {
+    return {
+      'items': items.map((item) => item.toMap()).toList(),
+      'payableAmount': payableAmount,
+      'paymentInfo': paymentInfo.toMap(),
+    };
+  }
+}
+
+class MyTransaction {
+  String transactionId;
+  double amount;
+  String currency;
+  String statusCode;
+  bool isSuccessful;
+  String message;
+
+  MyTransaction({
+    required this.transactionId,
+    required this.amount,
+    required this.currency,
+    required this.statusCode,
+    required this.isSuccessful,
+    required this.message,
+  });
+
+  // Factory method to create a Transaction instance from a Map
+  factory MyTransaction.fromMap(Map<String, dynamic> map) {
+    return MyTransaction(
+      transactionId: map['transactionId'] ?? '',
+      amount: map['amount'] ?? 0.0,
+      currency: map['currency'] ?? '',
+      statusCode: map['statusCode'] ?? '',
+      isSuccessful: map['isSuccessful'] ?? false,
+      message: map['message'] ?? '',
+    );
+  }
+
+  // Method to convert Transaction instance to a Map
+  Map<String, dynamic> toMap() {
+    return {
+      'transactionId': transactionId,
+      'amount': amount,
+      'currency': currency,
+      'statusCode': statusCode,
+      'isSuccessful': isSuccessful,
+      'message': message,
+    };
+  }
+}

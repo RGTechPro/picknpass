@@ -2,18 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:picknpass/cart.dart';
+import 'package:picknpass/home_page.dart';
+import 'package:picknpass/pages/models/cartModel.dart';
 import 'package:picknpass/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class QRPage extends StatefulWidget {
-  const QRPage({super.key});
+class ExitQRPage extends StatefulWidget {
+  const ExitQRPage({super.key});
 
   @override
-  State<QRPage> createState() => _QRPageState();
+  State<ExitQRPage> createState() => _ExitQRPageState();
 }
 
-class _QRPageState extends State<QRPage> {
+class _ExitQRPageState extends State<ExitQRPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -33,7 +35,7 @@ class _QRPageState extends State<QRPage> {
                     child: Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 0),
                       child: Text(
-                        'Welcome to our store!',
+                        'Hurray!!! Payment Successful!',
                         style: TextStyle(
                             fontSize: 23, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
@@ -44,7 +46,7 @@ class _QRPageState extends State<QRPage> {
                     child: Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 12.0),
                       child: Text(
-                        'Scan the QR Code to enter the store',
+                        'Scan the QR Code to exit the store',
                         style: TextStyle(
                           fontSize: 15,
                         ),
@@ -137,14 +139,24 @@ class _QRPageState extends State<QRPage> {
                 .currentUser!
                 .userId)
             .update({
-          'isLoggedIn': true,
+          'isLoggedIn': false,
         });
         print('User status updated successfully');
       } catch (e) {
         print('Error updating user status: $e');
       }
+  try {
+    await FirebaseFirestore.instance.collection('cart').doc(Provider.of<UserProvider>(context, listen: false)
+                .currentUser!
+                .userId).delete();
+    print('Cart document deleted successfully');
+  } catch (e) {
+    print('Error deleting cart document: $e');
+  }
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => Cart()));
+          .push(MaterialPageRoute(builder: (context) => HomePage()));
     }
   }
+
+ 
 }

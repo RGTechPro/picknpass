@@ -53,6 +53,8 @@ await  ref.set({
       'password': password,
       'modelData': predictedData,
       'userId': ref.id,
+            'isLoggedIn': false,
+
     });
 
    // await _databaseHelper.insert(userToSave);
