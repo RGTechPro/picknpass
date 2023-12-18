@@ -1,7 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:image/image.dart';
 import '../../locator.dart';
 import '../../services/camera.service.dart';
 import '../../services/ml_service.dart';
@@ -13,8 +12,8 @@ import '../profile.dart';
 import 'app_text_field.dart';
 
 class AuthActionButton extends StatefulWidget {
-  AuthActionButton(
-      {Key? key,
+  const AuthActionButton(
+      {super.key, 
       required this.onPressed,
       required this.isLogin,
       required this.reload});
@@ -37,7 +36,7 @@ class _AuthActionButtonState extends State<AuthActionButton> {
   User? predictedUser;
 
   Future _signUp(context) async {
-    DatabaseHelper _databaseHelper = DatabaseHelper.instance;
+    DatabaseHelper databaseHelper = DatabaseHelper.instance;
     List predictedData = _mlService.predictedData;
     String name = _userTextEditingController.text;
     String password = _passwordTextEditingController.text;
@@ -57,26 +56,26 @@ await  ref.set({
     });
 
    // await _databaseHelper.insert(userToSave);
-    this._mlService.setPredictedData([]);
+    _mlService.setPredictedData([]);
     Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+        MaterialPageRoute(builder: (BuildContext context) => const MyHomePage()));
   }
 
   Future _signIn(context) async {
     String password = _passwordTextEditingController.text;
-    if (this.predictedUser!.password == password) {
+    if (predictedUser!.password == password) {
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (BuildContext context) => Profile(
-                    this.predictedUser!.name,
+                    predictedUser!.name,
                     imagePath: _cameraService.imagePath!,
                   )));
     } else {
       showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
+          return const AlertDialog(
             content: Text('Wrong password!'),
           );
         },
@@ -96,7 +95,7 @@ await  ref.set({
         if (widget.isLogin) {
           var user = await _predictUser();
           if (user != null) {
-            this.predictedUser = user;
+            predictedUser = user;
           }
         }
         PersistentBottomSheetController bottomSheetController =
@@ -121,15 +120,15 @@ await  ref.set({
             BoxShadow(
               color: Colors.blue.withOpacity(0.1),
               blurRadius: 1,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ],
         ),
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
         width: MediaQuery.of(context).size.width * 0.8,
         height: 60,
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
@@ -148,7 +147,7 @@ await  ref.set({
 
   signSheet(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,13 +155,13 @@ await  ref.set({
           widget.isLogin && predictedUser != null
               ? Container(
                   child: Text(
-                    'Welcome back, ' + predictedUser!.name + '.',
-                    style: TextStyle(fontSize: 20),
+                    'Welcome back, ${predictedUser!.name}.',
+                    style: const TextStyle(fontSize: 20),
                   ),
                 )
               : widget.isLogin
                   ? Container(
-                      child: Text(
+                      child: const Text(
                       'User not found 😞',
                       style: TextStyle(fontSize: 20),
                     ))
@@ -176,7 +175,7 @@ await  ref.set({
                         labelText: "Your Name",
                       )
                     : Container(),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 widget.isLogin && predictedUser == null
                     ? Container()
                     : AppTextField(
@@ -184,16 +183,16 @@ await  ref.set({
                         labelText: "Password",
                         isPassword: true,
                       ),
-                SizedBox(height: 10),
-                Divider(),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
+                const Divider(),
+                const SizedBox(height: 10),
                 widget.isLogin && predictedUser != null
                     ? AppButton(
                         text: 'LOGIN',
                         onPressed: () async {
                           _signIn(context);
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.login,
                           color: Colors.white,
                         ),
@@ -204,7 +203,7 @@ await  ref.set({
                             onPressed: () async {
                               await _signUp(context);
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.person_add,
                               color: Colors.white,
                             ),

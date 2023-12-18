@@ -28,7 +28,7 @@ class SignInSheet extends StatelessWidget {
       showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
+          return const AlertDialog(
             content: Text('Wrong password!'),
           );
         },
@@ -39,35 +39,35 @@ class SignInSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             child: Text(
-              'Welcome back, ' + user.name + '.',
-              style: TextStyle(fontSize: 20),
+              'Welcome back, ${user.name}.',
+              style: const TextStyle(fontSize: 20),
             ),
           ),
           Container(
             child: Column(
               children: [
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 AppTextField(
                   controller: _passwordController,
                   labelText: "Password",
                   isPassword: true,
                 ),
-                SizedBox(height: 10),
-                Divider(),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
+                const Divider(),
+                const SizedBox(height: 10),
                 AppButton(
                   text: 'LOGIN',
                   onPressed: () async {
                     _signIn(context, user);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.login,
                     color: Colors.white,
                   ),

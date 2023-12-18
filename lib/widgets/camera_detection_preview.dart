@@ -24,7 +24,7 @@ class CameraDetectionPreview extends StatelessWidget {
           alignment: Alignment.center,
           child: FittedBox(
             fit: BoxFit.fitHeight,
-            child: Container(
+            child: SizedBox(
               width: width,
               height:
                   width * _cameraService.cameraController!.value.aspectRatio,

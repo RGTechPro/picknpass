@@ -8,7 +8,7 @@ import '../locator.dart';
 import 'camera.service.dart';
 
 class FaceDetectorService {
-  CameraService _cameraService = locator<CameraService>();
+  final CameraService _cameraService = locator<CameraService>();
 
   late FaceDetector _faceDetector;
   FaceDetector get faceDetector => _faceDetector;
@@ -32,7 +32,7 @@ class FaceDetectorService {
   }
 
   Future<void> detectFacesFromImage(CameraImage image) async {
-    InputImageData _firebaseImageMetadata = InputImageData(
+    InputImageData firebaseImageMetadata = InputImageData(
       imageRotation:
           _cameraService.cameraRotation ?? InputImageRotation.rotation0deg,
 
@@ -61,14 +61,14 @@ class FaceDetectorService {
     }
     final bytes = allBytes.done().buffer.asUint8List();
 
-    InputImage _firebaseVisionImage = InputImage.fromBytes(
+    InputImage firebaseVisionImage = InputImage.fromBytes(
       // bytes: image.planes[0].bytes,
       bytes: bytes,
-      inputImageData: _firebaseImageMetadata,
+      inputImageData: firebaseImageMetadata,
     );
     // for mlkit 13
 
-    _faces = await _faceDetector.processImage(_firebaseVisionImage);
+    _faces = await _faceDetector.processImage(firebaseVisionImage);
   }
 
   Future<List<Face>> detect(CameraImage image, InputImageRotation rotation) {

@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class User {
   String name;
@@ -29,4 +28,15 @@ class User {
       'userId': userId,
     };
   }
+}
+class Store {
+  final String name;
+  final double latitude;
+  final double longitude;
+
+  Store({
+    required this.name,
+    required this.latitude,
+    required this.longitude,
+  });
 }

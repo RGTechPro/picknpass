@@ -109,7 +109,7 @@ class MLService {
   }
 
   Future<User?> _searchResult(List predictedData) async {
-    DatabaseHelper _dbHelper = DatabaseHelper.instance;
+    DatabaseHelper dbHelper = DatabaseHelper.instance;
 
    // List<User> users = await _dbHelper.queryAllUsers();
    List <User> users = await queryAllUsersFromFirestore();
@@ -149,9 +149,9 @@ Future<List<User>> queryAllUsersFromFirestore() async {
     final db = FirebaseFirestore.instance;
     List<User> users = [];
     await db.collection('users').get().then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
+      for (var doc in querySnapshot.docs) {
         users.add(User.fromMap(doc.data() as Map<String, dynamic>));
-      });
+      }
     });
     return users;
   }

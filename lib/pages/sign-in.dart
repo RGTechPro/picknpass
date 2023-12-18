@@ -22,9 +22,9 @@ class SignIn extends StatefulWidget {
 }
 
 class SignInState extends State<SignIn> {
-  CameraService _cameraService = locator<CameraService>();
-  FaceDetectorService _faceDetectorService = locator<FaceDetectorService>();
-  MLService _mlService = locator<MLService>();
+  final CameraService _cameraService = locator<CameraService>();
+  final FaceDetectorService _faceDetectorService = locator<FaceDetectorService>();
+  final MLService _mlService = locator<MLService>();
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -80,7 +80,7 @@ class SignInState extends State<SignIn> {
       showDialog(
           context: context,
           builder: (context) =>
-              AlertDialog(content: Text('No face detected!')));
+              const AlertDialog(content: Text('No face detected!')));
     }
   }
 
@@ -104,9 +104,10 @@ class SignInState extends State<SignIn> {
   }
 
   Widget getBodyWidget() {
-    if (_isInitializing) return Center(child: CircularProgressIndicator());
-    if (_isPictureTaken)
+    if (_isInitializing) return const Center(child: CircularProgressIndicator());
+    if (_isPictureTaken) {
       return SinglePicture(imagePath: _cameraService.imagePath!);
+    }
     return CameraDetectionPreview();
   }
 
@@ -130,8 +131,8 @@ class SignInState extends State<SignIn> {
   signInSheet({@required User? user}) => user == null
       ? Container(
           width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.all(20),
-          child: Text(
+          padding: const EdgeInsets.all(20),
+          child: const Text(
             'User not found 😞',
             style: TextStyle(fontSize: 20),
           ),

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:picknpass/qr_page.dart';
 
@@ -16,8 +14,8 @@ class HomePage extends StatelessWidget {
             child: ListView(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0, left: 3.5),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 12.0, left: 3.5),
                   child: Text(
                     'Welcome,',
                     style: TextStyle(fontSize: 23),
@@ -25,10 +23,14 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 Container(
+                  height: 132,
+                  decoration: const BoxDecoration(
+                      color: Color(0xff3EC1FF),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
+                        const Text(
                           'Enter the\nStore',
                           style: TextStyle(color: Colors.white, fontSize: 32),
                         ),
@@ -40,36 +42,32 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => QRPage()));
+                                      builder: (context) => const QRPage()));
                             },
-                            child: Text(
-                              'QR Scan',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     MaterialStatePropertyAll(Color(0xff1088BF)),
                                 shape: MaterialStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10))))),
+                            child: const Text(
+                              'QR Scan',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
                           ),
                         )
                       ]),
-                  height: 132,
-                  decoration: BoxDecoration(
-                      color: Color(0xff3EC1FF),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 SizedBox(
                   height: 40,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    physics: ScrollPhysics(),
+                    physics: const ScrollPhysics(),
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
@@ -77,18 +75,18 @@ class HomePage extends StatelessWidget {
                           width: 100,
                           child: TextButton(
                             onPressed: () {},
-                            child: Text(
+                            style: const ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll(Color(0xff3EC1FF)),
+                                shape: MaterialStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))))),
+                            child: const Text(
                               'Top Picks',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 15),
                             ),
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStatePropertyAll(Color(0xff3EC1FF)),
-                                shape: MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10))))),
                           ),
                         ),
                       ),
@@ -98,18 +96,18 @@ class HomePage extends StatelessWidget {
                           width: 100,
                           child: TextButton(
                             onPressed: () {},
-                            child: Text(
+                            style: const ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll(Color(0xff3EC1FF)),
+                                shape: MaterialStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))))),
+                            child: const Text(
                               'Recent',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 15),
                             ),
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStatePropertyAll(Color(0xff3EC1FF)),
-                                shape: MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10))))),
                           ),
                         ),
                       ),
@@ -119,18 +117,18 @@ class HomePage extends StatelessWidget {
                           width: 100,
                           child: TextButton(
                             onPressed: () {},
-                            child: Text(
+                            style: const ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll(Color(0xff3EC1FF)),
+                                shape: MaterialStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))))),
+                            child: const Text(
                               'Grocery',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 15),
                             ),
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStatePropertyAll(Color(0xff3EC1FF)),
-                                shape: MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10))))),
                           ),
                         ),
                       ),
@@ -140,26 +138,26 @@ class HomePage extends StatelessWidget {
                           width: 100,
                           child: TextButton(
                             onPressed: () {},
-                            child: Text(
-                              'Cosmetics',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     MaterialStatePropertyAll(Color(0xff3EC1FF)),
                                 shape: MaterialStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10))))),
+                            child: const Text(
+                              'Cosmetics',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 3.5, top: 20),
+                const Padding(
+                  padding: EdgeInsets.only(left: 3.5, top: 20),
                   child: Text(
                     'Best for you',
                     style: TextStyle(fontSize: 15, color: Color(0xff3EC1FF)),
@@ -172,7 +170,7 @@ class HomePage extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Container(
                       width: 40,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         border: Border(
                           bottom:
                               BorderSide(color: Color(0xff3EC1FF), width: 1.0),
@@ -185,12 +183,17 @@ class HomePage extends StatelessWidget {
                     height: 270,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      physics: ScrollPhysics(),
+                      physics: const ScrollPhysics(),
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Container(
                             width: 175,
+                            height: 132,
+                            decoration: const BoxDecoration(
+                                color: Color(0xff3EC1FF),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -198,8 +201,8 @@ class HomePage extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Image.asset('assets/lorem.png'),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
+                                  const Padding(
+                                    padding: EdgeInsets.only(
                                         left: 11.5, right: 11.5, bottom: 8),
                                     child: Text(
                                         'Lorem Ipsum dolor sit amet cisoi lae do re...',
@@ -208,8 +211,8 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
+                                      const Padding(
+                                        padding: EdgeInsets.only(
                                           left: 11.5,
                                           right: 11.5,
                                         ),
@@ -224,13 +227,7 @@ class HomePage extends StatelessWidget {
                                         height: 35,
                                         child: TextButton(
                                           onPressed: () {},
-                                          child: Text(
-                                            'Add to Cart',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15),
-                                          ),
-                                          style: ButtonStyle(
+                                          style: const ButtonStyle(
                                               backgroundColor:
                                                   MaterialStatePropertyAll(
                                                       Color(0xff1088BF)),
@@ -240,87 +237,28 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.all(
                                                               Radius.circular(
                                                                   10))))),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ]),
-                            height: 132,
-                            decoration: BoxDecoration(
-                                color: Color(0xff3EC1FF),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 8.0),
-                          child: Container(
-                            width: 175,
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: Image.asset('assets/lorem.png'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 11.5, right: 11.5, bottom: 8),
-                                    child: Text(
-                                        'Lorem Ipsum dolor sit amet cisoi lae do re...',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 15)),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          left: 11.5,
-                                          right: 11.5,
-                                        ),
-                                        child: Text('Rs.45',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                                fontSize: 18)),
-                                      ),
-                                      SizedBox(
-                                        width: 100,
-                                        height: 35,
-                                        child: TextButton(
-                                          onPressed: () {},
-                                          child: Text(
+                                          child: const Text(
                                             'Add to Cart',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15),
                                           ),
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStatePropertyAll(
-                                                      Color(0xff1088BF)),
-                                              shape: MaterialStatePropertyAll(
-                                                  RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  10))))),
                                         ),
                                       ),
                                     ],
                                   )
                                 ]),
-                            height: 132,
-                            decoration: BoxDecoration(
-                                color: Color(0xff3EC1FF),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Container(
                             width: 175,
+                            height: 132,
+                            decoration: const BoxDecoration(
+                                color: Color(0xff3EC1FF),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -328,8 +266,8 @@ class HomePage extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Image.asset('assets/lorem.png'),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
+                                  const Padding(
+                                    padding: EdgeInsets.only(
                                         left: 11.5, right: 11.5, bottom: 8),
                                     child: Text(
                                         'Lorem Ipsum dolor sit amet cisoi lae do re...',
@@ -338,8 +276,8 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
+                                      const Padding(
+                                        padding: EdgeInsets.only(
                                           left: 11.5,
                                           right: 11.5,
                                         ),
@@ -354,13 +292,7 @@ class HomePage extends StatelessWidget {
                                         height: 35,
                                         child: TextButton(
                                           onPressed: () {},
-                                          child: Text(
-                                            'Add to Cart',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15),
-                                          ),
-                                          style: ButtonStyle(
+                                          style: const ButtonStyle(
                                               backgroundColor:
                                                   MaterialStatePropertyAll(
                                                       Color(0xff1088BF)),
@@ -370,22 +302,88 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.all(
                                                               Radius.circular(
                                                                   10))))),
+                                          child: const Text(
+                                            'Add to Cart',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15),
+                                          ),
                                         ),
                                       ),
                                     ],
                                   )
                                 ]),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                            width: 175,
                             height: 132,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Color(0xff3EC1FF),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Image.asset('assets/lorem.png'),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 11.5, right: 11.5, bottom: 8),
+                                    child: Text(
+                                        'Lorem Ipsum dolor sit amet cisoi lae do re...',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 15)),
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(
+                                          left: 11.5,
+                                          right: 11.5,
+                                        ),
+                                        child: Text('Rs.45',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                                fontSize: 18)),
+                                      ),
+                                      SizedBox(
+                                        width: 100,
+                                        height: 35,
+                                        child: TextButton(
+                                          onPressed: () {},
+                                          style: const ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStatePropertyAll(
+                                                      Color(0xff1088BF)),
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10))))),
+                                          child: const Text(
+                                            'Add to Cart',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ]),
                           ),
                         ),
                       ],
                     )),
-                Padding(
-                  padding: const EdgeInsets.only(left: 3.5, top: 20),
+                const Padding(
+                  padding: EdgeInsets.only(left: 3.5, top: 20),
                   child: Text(
                     'Recent',
                     style: TextStyle(fontSize: 15, color: Color(0xff3EC1FF)),
@@ -398,7 +396,7 @@ class HomePage extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Container(
                       width: 40,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         border: Border(
                           bottom:
                               BorderSide(color: Color(0xff3EC1FF), width: 1.0),
@@ -411,12 +409,17 @@ class HomePage extends StatelessWidget {
                     height: 270,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      physics: ScrollPhysics(),
+                      physics: const ScrollPhysics(),
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Container(
                             width: 175,
+                            height: 132,
+                            decoration: const BoxDecoration(
+                                color: Color(0xff3EC1FF),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -424,8 +427,8 @@ class HomePage extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Image.asset('assets/lorem.png'),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
+                                  const Padding(
+                                    padding: EdgeInsets.only(
                                         left: 11.5, right: 11.5, bottom: 8),
                                     child: Text(
                                         'Lorem Ipsum dolor sit amet cisoi lae do re...',
@@ -434,8 +437,8 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
+                                      const Padding(
+                                        padding: EdgeInsets.only(
                                           left: 11.5,
                                           right: 11.5,
                                         ),
@@ -450,13 +453,7 @@ class HomePage extends StatelessWidget {
                                         height: 35,
                                         child: TextButton(
                                           onPressed: () {},
-                                          child: Text(
-                                            'Add to Cart',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15),
-                                          ),
-                                          style: ButtonStyle(
+                                          style: const ButtonStyle(
                                               backgroundColor:
                                                   MaterialStatePropertyAll(
                                                       Color(0xff1088BF)),
@@ -466,87 +463,28 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.all(
                                                               Radius.circular(
                                                                   10))))),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ]),
-                            height: 132,
-                            decoration: BoxDecoration(
-                                color: Color(0xff3EC1FF),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 8.0),
-                          child: Container(
-                            width: 175,
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: Image.asset('assets/lorem.png'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 11.5, right: 11.5, bottom: 8),
-                                    child: Text(
-                                        'Lorem Ipsum dolor sit amet cisoi lae do re...',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 15)),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          left: 11.5,
-                                          right: 11.5,
-                                        ),
-                                        child: Text('Rs.45',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                                fontSize: 18)),
-                                      ),
-                                      SizedBox(
-                                        width: 100,
-                                        height: 35,
-                                        child: TextButton(
-                                          onPressed: () {},
-                                          child: Text(
+                                          child: const Text(
                                             'Add to Cart',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15),
                                           ),
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStatePropertyAll(
-                                                      Color(0xff1088BF)),
-                                              shape: MaterialStatePropertyAll(
-                                                  RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  10))))),
                                         ),
                                       ),
                                     ],
                                   )
                                 ]),
-                            height: 132,
-                            decoration: BoxDecoration(
-                                color: Color(0xff3EC1FF),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Container(
                             width: 175,
+                            height: 132,
+                            decoration: const BoxDecoration(
+                                color: Color(0xff3EC1FF),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -554,8 +492,8 @@ class HomePage extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Image.asset('assets/lorem.png'),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
+                                  const Padding(
+                                    padding: EdgeInsets.only(
                                         left: 11.5, right: 11.5, bottom: 8),
                                     child: Text(
                                         'Lorem Ipsum dolor sit amet cisoi lae do re...',
@@ -564,8 +502,8 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
+                                      const Padding(
+                                        padding: EdgeInsets.only(
                                           left: 11.5,
                                           right: 11.5,
                                         ),
@@ -580,13 +518,7 @@ class HomePage extends StatelessWidget {
                                         height: 35,
                                         child: TextButton(
                                           onPressed: () {},
-                                          child: Text(
-                                            'Add to Cart',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15),
-                                          ),
-                                          style: ButtonStyle(
+                                          style: const ButtonStyle(
                                               backgroundColor:
                                                   MaterialStatePropertyAll(
                                                       Color(0xff1088BF)),
@@ -596,16 +528,82 @@ class HomePage extends StatelessWidget {
                                                           BorderRadius.all(
                                                               Radius.circular(
                                                                   10))))),
+                                          child: const Text(
+                                            'Add to Cart',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15),
+                                          ),
                                         ),
                                       ),
                                     ],
                                   )
                                 ]),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                            width: 175,
                             height: 132,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Color(0xff3EC1FF),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Image.asset('assets/lorem.png'),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 11.5, right: 11.5, bottom: 8),
+                                    child: Text(
+                                        'Lorem Ipsum dolor sit amet cisoi lae do re...',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 15)),
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(
+                                          left: 11.5,
+                                          right: 11.5,
+                                        ),
+                                        child: Text('Rs.45',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                                fontSize: 18)),
+                                      ),
+                                      SizedBox(
+                                        width: 100,
+                                        height: 35,
+                                        child: TextButton(
+                                          onPressed: () {},
+                                          style: const ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStatePropertyAll(
+                                                      Color(0xff1088BF)),
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10))))),
+                                          child: const Text(
+                                            'Add to Cart',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ]),
                           ),
                         ),
                       ],
@@ -614,17 +612,17 @@ class HomePage extends StatelessWidget {
             ),
           ),
           appBar: AppBar(
-            backgroundColor: Color(0xff3EC1FF),
+            backgroundColor: const Color(0xff3EC1FF),
             elevation: 0,
             leading: IconButton(
               icon: SvgPicture.asset('assets/Menu.svg'),
               onPressed: () {},
             ),
             title: SvgPicture.asset('assets/logo.svg'),
-            actions: [
+            actions: const [
               Icon(Icons.location_on_outlined),
               Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: EdgeInsets.only(right: 8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
