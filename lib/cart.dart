@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:xpresspayments_gateway/xpresspayments_gateway.dart';
 
 class Cart extends StatelessWidget {
-  Cart({super.key});
+  const Cart({super.key});
   int get date => DateTime.now().microsecondsSinceEpoch;
 
   int get transactionId => Random().nextInt(1000000).floor().toInt();
@@ -53,10 +53,10 @@ class Cart extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(bottom: 12.0, left: 3.5),
+                      padding: const EdgeInsets.only(bottom: 12.0, left: 3.5),
                       child: Text(
                         'Your Cart (${Provider.of<UserProvider>(context, listen: false).cartItems!.items.length} Items)',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 23, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.start,
                       ),
@@ -94,7 +94,7 @@ class Cart extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
-                              child: Image.asset('assets/lorem.png'),
+                              child: Image.asset('assets/${cartData.items[index].itemName}.jpeg'),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -299,9 +299,9 @@ class Cart extends StatelessWidget {
                   isSuccessful: transaction.isSuccessful)));
 
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => ExitQRPage()));
+          context, MaterialPageRoute(builder: (context) => const ExitQRPage()));
     }, (exception, transaction) {
-      debugPrint("error: " + exception.message);
+      debugPrint("error: ${exception.message}");
     });
   }
 

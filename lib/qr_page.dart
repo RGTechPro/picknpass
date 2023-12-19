@@ -144,7 +144,7 @@ class _QRPageState extends State<QRPage> {
         print('Error updating user status: $e');
       }
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => Cart()));
+          .push(MaterialPageRoute(builder: (context) => const Cart()));
     }
   }
 }

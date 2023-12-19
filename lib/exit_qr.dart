@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:picknpass/cart.dart';
 import 'package:picknpass/home_page.dart';
-import 'package:picknpass/pages/models/cartModel.dart';
 import 'package:picknpass/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';

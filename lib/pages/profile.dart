@@ -134,16 +134,16 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               ),
-              Icon(Icons.location_on,
+              const Icon(Icons.location_on,
                   size: 50.0, color: Colors.blue), // Location icon
-              SizedBox(height: 16.0),
-              Text(
+              const SizedBox(height: 16.0),
+              const Text(
                 'Your current store location is:',
                 style: TextStyle(fontSize: 18.0),
               ),
               Text(
                 currentLocation,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 24.0, fontWeight: FontWeight.bold),
               ),
               Container(
@@ -175,7 +175,7 @@ class _ProfileState extends State<Profile> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomePage()));
+                                builder: (context) =>  HomePage()));
                       },
                       child: Container(
                         decoration: BoxDecoration(
